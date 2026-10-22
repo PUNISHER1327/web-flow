@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #F4F1EA;
+  --color-surface: #FFFFFF;
+  --color-surface-elevated: #ECE8DE;
+  --color-text-primary: #171815;
+  --color-text-muted: #73756F;
+  --color-border: #DFDDD5;
+  --color-accent: #D9F36A;
+  --color-accent-hover: #C5E054;
+  --color-accent-glow: rgba(217, 243, 106, 0.35);
+  --color-secondary: #344332;
+  --color-secondary-light: #4A5F47;
+  --color-secondary-dark: #222C20;
+}
+
+.dark {
+  --color-bg: #10110F;
+  --color-surface: #191B17;
+  --color-surface-elevated: #22251F;
+  --color-text-primary: #F1F0E9;
+  --color-text-muted: #A1A49A;
+  --color-border: #30332C;
+  --color-accent: #D9F36A;
+  --color-accent-hover: #E4FB7F;
+  --color-accent-glow: rgba(217, 243, 106, 0.25);
+  --color-secondary: #8DAB82;
+  --color-secondary-light: #A7C99B;
+  --color-secondary-dark: #242E21;
+}
+
+html {
+  scroll-behavior: auto; /* Handled smoothly by Lenis */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  transition: background-color 300ms cubic-bezier(0.22, 1, 0.36, 1),
+              color 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  overflow-x: hidden;
+}
+
+/* Fluid Typography Classes */
+.h1-fluid {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(3.25rem, 8vw, 8rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+.h2-fluid {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+.h3-fluid {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.label-mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Grain texture overlay at ~4% opacity */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Link Underline Animation */
+.editorial-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.editorial-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.editorial-link:hover::after {
+  width: 100%;
+}
+
+/* Spotlight Card Base */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  transition: border-color 300ms ease, box-shadow 300ms ease, transform 150ms ease-out;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
